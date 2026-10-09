@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE KNOWLEDGE SANCTUM — Universe & AI Research Hub</title>
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -42,94 +39,19 @@
   </script>
 
   <style>
-    body {
-      background-color: #080B14;
-      color: #F4F7FC;
-      font-family: 'Inter', sans-serif;
-    }
-    .font-devanagari {
-      font-family: 'Noto Serif Devanagari', serif;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #080B14;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #263246;
-      border-radius: 3px;
-    }
+    body { background-color: #080B14; color: #F4F7FC; font-family: 'Inter', sans-serif; }
+    .font-devanagari { font-family: 'Noto Serif Devanagari', serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #080B14; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #263246; border-radius: 3px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#64D8FF] selection:text-[#080B14]">
 
-  <!-- ========================================== -->
-  <!-- 0. ACCESS GATE / AUTH OVERLAY             -->
-  <!-- ========================================== -->
-  <div id="login-gate-overlay" class="fixed inset-0 z-[100] bg-[#080B14] flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-[#0D1320] border border-[#263246] rounded-2xl p-8 shadow-2xl relative overflow-hidden space-y-6">
-      <div class="text-center space-y-2">
-        <div class="w-12 h-12 rounded-xl bg-[#111827] border border-[#64D8FF]/40 flex items-center justify-center mx-auto text-[#64D8FF]">
-          <i data-lucide="shield-check" class="w-6 h-6"></i>
-        </div>
-        <h2 class="text-2xl font-bold tracking-tight text-[#F4F7FC]" id="auth-title">Security Gateway</h2>
-        <p class="text-xs text-[#A7B3C8]" id="auth-sub">Enter credentials to unlock The Knowledge Sanctum.</p>
-      </div>
-
-      <!-- Auth Form Container -->
-      <div id="auth-form-container" class="space-y-4">
-        <div>
-          <label class="block text-xs font-medium text-[#A7B3C8] mb-1">Phone Number</label>
-          <input type="tel" id="auth-phone" placeholder="9876543210" class="w-full bg-[#111827] border border-[#263246] focus:border-[#64D8FF] text-[#F4F7FC] px-4 py-2.5 rounded-xl text-sm outline-none transition-all placeholder-[#A7B3C8]/40">
-        </div>
-
-        <div>
-          <label class="block text-xs font-medium text-[#A7B3C8] mb-1">Password</label>
-          <div class="relative">
-            <input type="password" id="auth-password" placeholder="••••••••" class="w-full bg-[#111827] border border-[#263246] focus:border-[#64D8FF] text-[#F4F7FC] pl-4 pr-10 py-2.5 rounded-xl text-sm outline-none transition-all">
-            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#A7B3C8] hover:text-[#64D8FF]">
-              <i data-lucide="eye" id="pwd-eye-icon" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between text-xs text-[#A7B3C8]">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="remember-me" checked class="rounded border-[#263246] bg-[#111827] text-[#64D8FF] focus:ring-0">
-            <span>Remember ID & Password</span>
-          </label>
-        </div>
-
-        <div id="auth-error" class="hidden text-xs text-[#FF737D] bg-[#FF737D]/10 border border-[#FF737D]/20 p-2.5 rounded-lg text-center"></div>
-
-        <button type="button" onclick="handleAuthSubmit(event)" class="w-full py-3 rounded-xl bg-[#64D8FF] text-[#080B14] font-bold text-xs uppercase tracking-wider hover:bg-[#64D8FF]/90 transition-all flex items-center justify-center gap-2 cursor-pointer">
-          <span>Enter Sanctum</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <!-- Toggle Mode -->
-      <div class="text-center text-xs text-[#A7B3C8] pt-2 border-t border-[#263246]">
-        <span id="auth-toggle-text">Don't have an account?</span>
-        <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-[#64D8FF] font-semibold hover:underline ml-1">Create Account</button>
-      </div>
-
-      <!-- Demo Credentials Helper -->
-      <div class="bg-[#111827] p-3 rounded-lg border border-[#263246] text-[11px] text-[#A7B3C8] space-y-1">
-        <p class="font-bold text-[#E7C986]">Default Demo Credentials:</p>
-        <p>• Phone: <code class="text-[#64D8FF]">9876543210</code></p>
-        <p>• Password: <code class="text-[#64D8FF]">sanctum123</code></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================== -->
-  <!-- 1. GLOBAL NAVIGATION BAR                  -->
-  <!-- ========================================== -->
+  <!-- GLOBAL NAVIGATION BAR -->
   <header class="sticky top-0 z-50 bg-[#080B14]/90 backdrop-blur-md border-b border-[#263246] px-4 lg:px-8 py-3">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       
-      <!-- Brand Logo -->
       <div onclick="switchTab('home')" class="flex items-center gap-3 cursor-pointer group">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-[#64D8FF]/20 via-[#B99AFF]/20 to-[#E7C986]/20 border border-[#64D8FF]/40 flex items-center justify-center group-hover:border-[#64D8FF] transition-all">
           <i data-lucide="sparkles" class="w-5 h-5 text-[#64D8FF]"></i>
@@ -142,7 +64,6 @@
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
       <nav class="hidden lg:flex items-center gap-1 bg-[#0D1320] p-1.5 rounded-xl border border-[#263246]">
         <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#64D8FF] bg-[#111827] border border-[#263246] flex items-center gap-1.5">
           <i data-lucide="compass" class="w-3.5 h-3.5"></i> <span id="lbl-nav-home">Home</span>
@@ -164,25 +85,17 @@
         </button>
       </nav>
 
-      <!-- Right Controls: Language Switcher & Lock -->
       <div class="flex items-center gap-2">
         <button onclick="toggleLanguage()" id="lang-switch-btn" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#E7C986]/40 text-[#E7C986] hover:bg-[#E7C986]/10 text-xs font-bold transition-all flex items-center gap-1">
           <i data-lucide="languages" class="w-3.5 h-3.5"></i> <span id="lang-btn-text">नेपाली</span>
-        </button>
-
-        <button onclick="lockSanctum()" title="Lock Sanctum" class="p-2 rounded-lg bg-[#0D1320] border border-[#263246] text-[#A7B3C8] hover:text-[#FF737D] transition-colors">
-          <i data-lucide="lock" class="w-4 h-4"></i>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ========================================== -->
-  <!-- MAIN CONTENT CONTAINER                    -->
-  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER -->
   <div id="app-container" class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
     
-    <!-- TAB 1: HOMEPAGE -->
     <section id="tab-home" class="space-y-12">
       <div class="text-center py-12 px-4 space-y-6">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#111827] border border-[#263246] text-xs text-[#64D8FF]">
@@ -214,7 +127,6 @@
       </div>
     </section>
 
-    <!-- TAB 2: EXPLORE GRAPH -->
     <section id="tab-explore" class="hidden space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-explore">Knowledge Map & Topology</h2>
@@ -225,7 +137,6 @@
       </div>
     </section>
 
-    <!-- TAB 3: VAULT (ARTICLES) -->
     <section id="tab-vault" class="hidden space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -236,7 +147,6 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vault-articles-grid"></div>
     </section>
 
-    <!-- TAB 4: SANCTUM AI WORKSPACE -->
     <section id="tab-ai" class="hidden max-w-4xl mx-auto space-y-6">
       <div class="border-b border-[#263246] pb-4">
         <h2 class="text-2xl font-bold text-[#F4F7FC] flex items-center gap-2">
@@ -264,7 +174,6 @@
       </div>
     </section>
 
-    <!-- TAB 5: DOCUMENTARIES -->
     <section id="tab-docs" class="hidden space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-docs">Documentary Library</h2>
@@ -273,7 +182,6 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="documentaries-grid"></div>
     </section>
 
-    <!-- TAB 6: MY SANCTUM -->
     <section id="tab-sanctum" class="hidden max-w-4xl mx-auto space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-sanctum">My Sanctum Collection</h2>
@@ -282,7 +190,6 @@
       <div class="space-y-4" id="saved-bookmarks-list"></div>
     </section>
 
-    <!-- ARTICLE READER VIEW MODAL -->
     <section id="article-reader" class="hidden max-w-4xl mx-auto space-y-6">
       <button onclick="closeArticleReader()" class="flex items-center gap-2 text-xs text-[#64D8FF] hover:underline">
         ← <span id="lbl-back-vault">Return to Vault</span>
@@ -291,9 +198,7 @@
     </section>
   </div>
 
-  <!-- ========================================== -->
-  <!-- GLOBAL FOOTER                              -->
-  <!-- ========================================== -->
+  <!-- FOOTER -->
   <footer class="border-t border-[#263246] bg-[#080B14] py-12 px-4 mt-12">
     <div class="max-w-7xl mx-auto space-y-8">
       <div class="bg-[#0D1320] border border-[#263246] p-6 rounded-2xl space-y-4">
@@ -329,10 +234,75 @@
     </div>
   </footer>
 
-  <!-- ========================================== -->
-  <!-- JAVASCRIPT ENGINE                          -->
-  <!-- ========================================== -->
   <script>
     const CATEGORIES = [
-      { id: 'cosmos', name: 'The Cosmos', tagline: 'Cosmology, Astrophysics & Spacetime', color: '#64D8FF', icon: '🌌', nepaliName: 'ब्रह्माण्डशास्त्र', nepaliTagline: 'खगोलशास्त्र, भौतिकशास्त्र र अन्तरिक्ष' },
-      { id: 'science', name: 'Science & Discovery', tagline: 'Quantum Mechanics, Physics & Chemistry', color: '#65D6A4', icon: '🔬', nepaliName: 'विज्
+      { id: 'cosmos', name: 'The Cosmos', tagline: 'Cosmology, Astrophysics & Spacetime', icon: '🌌', nepaliName: 'ब्रह्माण्डशास्त्र', nepaliTagline: 'खगोलशास्त्र र अन्तरिक्ष' },
+      { id: 'science', name: 'Science & Discovery', tagline: 'Quantum Mechanics, Physics & Chemistry', icon: '🔬', nepaliName: 'विज्ञान र खोज', nepaliTagline: 'भौतिक र रसायन विज्ञान' },
+      { id: 'human', name: 'Human Body & Mind', tagline: 'Neuroscience, Memory & Biology', icon: '🧠', nepaliName: 'मानव शरीर र मस्तिष्क', nepaliTagline: 'न्यूरोसाइन्स र जीवविज्ञान' },
+      { id: 'history', name: 'History & Civilizations', tagline: 'Archaeology, Rise & Fall of Empires', icon: '🏛️', nepaliName: 'इतिहास र सभ्यता', nepaliTagline: 'प्राचीन सभ्यताहरू' },
+      { id: 'ai', name: 'Technology & AI', tagline: 'Neural Networks, Compute & Cybernetics', icon: '⚡', nepaliName: 'प्रविधि र एआई', nepaliTagline: 'आर्टिफिसियल इन्टेलिजेन्स' },
+      { id: 'sanskrit', name: 'Sanskrit & Indian Systems', tagline: 'Vyākaraṇa, Linguistics & Vedic Philosophy', icon: '🕉️', nepaliName: 'संस्कृत र व्याकरणशास्त्र', nepaliTagline: 'पाणिनि व्याकरण र दर्शन' }
+    ];
+
+    const ARTICLES = [
+      { id: 'art-1', title: 'Thermodynamics of Singularity: How Black Holes Warp Spacetime', categoryName: 'The Cosmos', readTime: 12, heroImage: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80', summary: 'Black holes are extreme boundary conditions of relativity where spacetime curvature becomes infinite.', content: '<h3>Event Horizons</h3><p>Gravitational collapse overcomes electron degeneracy pressure.</p>' },
+      { id: 'art-2', title: 'An Introduction to Pāṇini’s Aṣṭādhyāyī: Generative Grammar', categoryName: 'Sanskrit & Indian Systems', readTime: 16, heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', summary: 'How an ancient grammarian built the world’s first algorithmic generative system.', content: '<h3 class="font-devanagari">पाणिनि-अष्टाध्यायी परिचयः</h3><p>Pāṇini’s 3,996 sūtras form a generative engine.</p>' }
+    ];
+
+    const DOCUMENTARIES = [
+      { id: 'doc-1', title: 'The Edge of Spacetime: Inside Black Holes', poster: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80', synopsis: 'A visual investigation into event horizons.', youtubeId: 'e-P5IFTqB98' }
+    ];
+
+    let currentLang = localStorage.getItem('sanctum_lang') || 'en';
+    let aiMessages = [{ sender: 'ai', text: 'Welcome to Sanctum AI Workspace. Ask any scientific, cosmological, historical, or Sanskrit question.' }];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderCategories();
+      renderVaultArticles();
+      renderExploreNodes();
+      renderDocumentaries();
+      renderAiMessages();
+      applyLanguageUI();
+    });
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'ne' : 'en';
+      localStorage.setItem('sanctum_lang', currentLang);
+      applyLanguageUI();
+    }
+
+    function applyLanguageUI() {
+      document.getElementById('lang-btn-text').innerText = currentLang === 'en' ? 'नेपाली' : 'English';
+      if (currentLang === 'ne') {
+        document.getElementById('lbl-nav-home').innerText = 'गृहपृष्ठ';
+        document.getElementById('lbl-nav-explore').innerText = 'अन्वेषण';
+        document.getElementById('lbl-nav-vault').innerText = 'ज्ञान भण्डार';
+        document.getElementById('lbl-nav-ai').innerText = 'सङ्गम एआई';
+        document.getElementById('lbl-nav-docs').innerText = 'वृत्तचित्र';
+        document.getElementById('lbl-nav-sanctum').innerText = 'मेरो सङ्गम';
+        document.getElementById('hero-title').innerHTML = `ज्ञानको सीमाभन्दा बाहिर।<br><span class="bg-gradient-to-r from-[#64D8FF] via-[#B99AFF] to-[#E7C986] bg-clip-text text-transparent">असीम रहस्यको खोज गरौँ।</span>`;
+        document.getElementById('hero-desc').innerText = 'भौतिकशास्त्र, ब्रह्माण्डशास्त्र, न्यूरोसाइन्स र प्राचीन संस्कृत व्याकरणशास्त्र अध्ययन गर्नुहोस्।';
+      } else {
+        document.getElementById('lbl-nav-home').innerText = 'Home';
+        document.getElementById('lbl-nav-explore').innerText = 'Explore';
+        document.getElementById('lbl-nav-vault').innerText = 'Vault';
+        document.getElementById('lbl-nav-ai').innerText = 'Sanctum AI';
+        document.getElementById('lbl-nav-docs').innerText = 'Documentaries';
+        document.getElementById('lbl-nav-sanctum').innerText = 'My Sanctum';
+        document.getElementById('hero-title').innerHTML = `Beyond What You Know.<br><span class="bg-gradient-to-r from-[#64D8FF] via-[#B99AFF] to-[#E7C986] bg-clip-text text-transparent">Discover What You Don't.</span>`;
+        document.getElementById('hero-desc').innerText = 'Explore science, astronomy, neuroscience, ancient history, and Sanskrit generative linguistics.';
+      }
+      renderCategories();
+    }
+
+    function switchTab(tabId) {
+      ['home', 'explore', 'vault', 'ai', 'docs', 'sanctum'].forEach(id => {
+        document.getElementById(`tab-${id}`).classList.add('hidden');
+      });
+      document.getElementById('article-reader').classList.add('hidden');
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+    }
+
+    function renderCategories() {
+     
