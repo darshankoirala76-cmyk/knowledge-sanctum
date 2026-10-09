@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE KNOWLEDGE SANCTUM — Universe & AI Research Hub</title>
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -51,29 +48,24 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#64D8FF] selection:text-[#080B14]">
 
-  <!-- 0. ONE-CLICK ENTRY GATE OVERLAY -->
+  <!-- ENTRY GATE OVERLAY -->
   <div id="login-gate-overlay" class="fixed inset-0 z-[100] bg-[#080B14] flex items-center justify-center p-4">
     <div class="max-w-md w-full bg-[#0D1320] border border-[#263246] rounded-2xl p-8 shadow-2xl text-center space-y-6">
-      
       <div class="w-16 h-16 rounded-2xl bg-[#111827] border border-[#64D8FF]/40 flex items-center justify-center mx-auto text-[#64D8FF] shadow-lg shadow-[#64D8FF]/10">
         <i data-lucide="sparkles" class="w-8 h-8"></i>
       </div>
-
       <div class="space-y-2">
         <h2 class="text-2xl font-bold tracking-tight text-[#F4F7FC]">THE KNOWLEDGE SANCTUM</h2>
         <p class="text-xs text-[#A7B3C8]">Welcome to the portal of universal science, history, and AI research.</p>
       </div>
-
-      <!-- DIRECT ENTER BUTTON -->
-      <button type="button" onclick="document.getElementById('login-gate-overlay').style.display='none'" class="w-full py-4 rounded-xl bg-[#64D8FF] text-[#080B14] font-extrabold text-sm uppercase tracking-wider hover:bg-[#64D8FF]/90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#64D8FF]/20 active:scale-95">
+      <button type="button" onclick="enterSanctumPortal()" class="w-full py-4 rounded-xl bg-[#64D8FF] text-[#080B14] font-extrabold text-sm uppercase tracking-wider hover:bg-[#64D8FF]/90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#64D8FF]/20 active:scale-95">
         <span>ENTER SANCTUM</span> <i data-lucide="arrow-right" class="w-5 h-5"></i>
       </button>
-
       <p class="text-[11px] text-[#A7B3C8]/70">Created by Darshan Koirala</p>
     </div>
   </div>
 
-  <!-- 1. GLOBAL NAVIGATION BAR -->
+  <!-- NAVIGATION BAR -->
   <header class="sticky top-0 z-50 bg-[#080B14]/90 backdrop-blur-md border-b border-[#263246] px-4 lg:px-8 py-3">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <div onclick="switchTab('home')" class="flex items-center gap-3 cursor-pointer group">
@@ -81,33 +73,37 @@
           <i data-lucide="sparkles" class="w-5 h-5 text-[#64D8FF]"></i>
         </div>
         <div>
-          <h1 class="font-display font-bold text-base md:text-lg tracking-wider bg-gradient-to-r from-[#F4F7FC] via-[#64D8FF] to-[#B99AFF] bg-clip-text text-transparent" id="brand-title">
+          <h1 class="font-display font-bold text-base md:text-lg tracking-wider bg-gradient-to-r from-[#F4F7FC] via-[#64D8FF] to-[#B99AFF] bg-clip-text text-transparent">
             THE KNOWLEDGE SANCTUM
           </h1>
-          <p class="text-[10px] text-[#A7B3C8] tracking-widest uppercase" id="brand-subtitle">Universe & AI Hub</p>
+          <p class="text-[10px] text-[#A7B3C8] tracking-widest uppercase">Universe & AI Hub</p>
         </div>
       </div>
 
-      <nav class="hidden lg:flex items-center gap-1 bg-[#0D1320] p-1.5 rounded-xl border border-[#263246]">
-        <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#64D8FF] bg-[#111827] border border-[#263246] flex items-center gap-1.5">
+      <!-- Navigation Tabs (Desktop & Mobile Scroll) -->
+      <nav class="flex items-center gap-1 bg-[#0D1320] p-1.5 rounded-xl border border-[#263246] overflow-x-auto">
+        <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#64D8FF] bg-[#111827] border border-[#263246] flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="compass" class="w-3.5 h-3.5"></i> <span id="lbl-nav-home">Home</span>
         </button>
-        <button onclick="switchTab('explore')" id="nav-explore" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5">
+        <button onclick="switchTab('explore')" id="nav-explore" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="globe" class="w-3.5 h-3.5"></i> <span id="lbl-nav-explore">Explore</span>
         </button>
-        <button onclick="switchTab('vault')" id="nav-vault" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5">
+        <button onclick="switchTab('vault')" id="nav-vault" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="book-open" class="w-3.5 h-3.5"></i> <span id="lbl-nav-vault">Vault</span>
         </button>
-        <button onclick="switchTab('ai')" id="nav-ai" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#B99AFF] hover:text-[#F4F7FC] flex items-center gap-1.5">
+        <button onclick="switchTab('ai')" id="nav-ai" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#B99AFF] hover:text-[#F4F7FC] flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="cpu" class="w-3.5 h-3.5"></i> <span id="lbl-nav-ai">Sanctum AI</span>
         </button>
-        <button onclick="switchTab('docs')" id="nav-docs" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5">
+        <button onclick="switchTab('docs')" id="nav-docs" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5 whitespace-nowrap">
           <i data-lucide="film" class="w-3.5 h-3.5"></i> <span id="lbl-nav-docs">Documentaries</span>
+        </button>
+        <button onclick="switchTab('sanctum')" id="nav-sanctum" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#A7B3C8] hover:text-[#F4F7FC] flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="bookmark" class="w-3.5 h-3.5"></i> <span id="lbl-nav-sanctum">My Sanctum</span>
         </button>
       </nav>
 
       <div class="flex items-center gap-2">
-        <button onclick="toggleLanguage()" id="lang-switch-btn" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#E7C986]/40 text-[#E7C986] hover:bg-[#E7C986]/10 text-xs font-bold transition-all flex items-center gap-1">
+        <button onclick="toggleLanguage()" id="lang-switch-btn" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#E7C986]/40 text-[#E7C986] hover:bg-[#E7C986]/10 text-xs font-bold transition-all flex items-center gap-1 whitespace-nowrap">
           <i data-lucide="languages" class="w-3.5 h-3.5"></i> <span id="lang-btn-text">नेपाली</span>
         </button>
       </div>
@@ -116,6 +112,8 @@
 
   <!-- MAIN CONTENT CONTAINER -->
   <div id="app-container" class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+    
+    <!-- TAB 1: HOME -->
     <section id="tab-home" class="space-y-12">
       <div class="text-center py-12 px-4 space-y-6">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#111827] border border-[#263246] text-xs text-[#64D8FF]">
@@ -147,6 +145,7 @@
       </div>
     </section>
 
+    <!-- TAB 2: EXPLORE -->
     <section id="tab-explore" class="hidden space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-explore">Knowledge Map & Topology</h2>
@@ -157,6 +156,7 @@
       </div>
     </section>
 
+    <!-- TAB 3: VAULT -->
     <section id="tab-vault" class="hidden space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-vault">Knowledge Vault</h2>
@@ -165,13 +165,20 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vault-articles-grid"></div>
     </section>
 
+    <!-- TAB 4: SANCTUM AI -->
     <section id="tab-ai" class="hidden max-w-4xl mx-auto space-y-6">
       <div class="border-b border-[#263246] pb-4">
         <h2 class="text-2xl font-bold text-[#F4F7FC] flex items-center gap-2">
           <i data-lucide="cpu" class="w-6 h-6 text-[#B99AFF]"></i>
           <span id="heading-ai">Sanctum AI Workspace</span>
         </h2>
-        <p class="text-xs text-[#A7B3C8]" id="sub-ai">Multi-model assistant for astrophysics, history, and Sanskrit analysis.</p>
+        <p class="text-xs text-[#A7B3C8]" id="sub-ai">Multi-model assistant for astrophysics, history, and Devanagari Sanskrit analysis.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 text-xs">
+        <button onclick="sendQuickPrompt('Explain Black Hole Thermodynamics')" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#263246] text-[#64D8FF] hover:border-[#64D8FF]">🌌 Black Hole Physics</button>
+        <button onclick="sendQuickPrompt('Explain Panini Astadhyayi Sutra 1.1.1')" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#263246] text-[#E7C986] hover:border-[#E7C986]">🕉️ पाणिनि अष्टाध्यायी</button>
+        <button onclick="sendQuickPrompt('How do synaptic engrams consolidate memory in human brain?')" class="px-3 py-1.5 rounded-lg bg-[#0D1320] border border-[#263246] text-[#FF737D] hover:border-[#FF737D]">🧠 Brain Memory Engrams</button>
       </div>
 
       <div class="bg-[#0D1320] border border-[#263246] rounded-2xl p-6 min-h-[420px] flex flex-col justify-between space-y-6">
@@ -185,13 +192,25 @@
       </div>
     </section>
 
+    <!-- TAB 5: DOCUMENTARIES -->
     <section id="tab-docs" class="hidden space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-docs">Documentary Library</h2>
+        <p class="text-xs text-[#A7B3C8]" id="sub-docs">Cinematic visual explorations of open cosmological and historical frontiers.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="documentaries-grid"></div>
     </section>
 
+    <!-- TAB 6: MY SANCTUM -->
+    <section id="tab-sanctum" class="hidden max-w-4xl mx-auto space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-[#F4F7FC]" id="heading-sanctum">My Sanctum Collection</h2>
+        <p class="text-xs text-[#A7B3C8]" id="sub-sanctum">Your saved articles and learning workspace.</p>
+      </div>
+      <div class="space-y-4" id="saved-bookmarks-list"></div>
+    </section>
+
+    <!-- ARTICLE READER -->
     <section id="article-reader" class="hidden max-w-4xl mx-auto space-y-6">
       <button onclick="closeArticleReader()" class="flex items-center gap-2 text-xs text-[#64D8FF] hover:underline">← Return to Vault</button>
       <div id="reader-content" class="space-y-6"></div>
@@ -241,12 +260,12 @@
     ];
 
     const ARTICLES = [
-      { id: 'art-1', title: 'Thermodynamics of Singularity: Black Holes', categoryName: 'The Cosmos', readTime: 12, summary: 'Black holes are extreme boundary conditions of relativity.', content: '<h3>Event Horizons</h3><p>Gravitational collapse occurs when fuel burns out.</p>' },
-      { id: 'art-2', title: 'Pāṇini’s Aṣṭādhyāyī: Generative Grammar', categoryName: 'Sanskrit & Indian Systems', readTime: 16, summary: 'Ancient algorithmic generative system.', content: '<h3 class="font-devanagari">पाणिनि अष्टाध्यायी</h3><p>Rule engine for Sanskrit grammar.</p>' }
+      { id: 'art-1', title: 'Thermodynamics of Singularity: Black Holes', categoryName: 'The Cosmos', summary: 'Black holes are extreme boundary conditions of relativity.', content: '<h3>Event Horizons</h3><p>Gravitational collapse occurs when thermonuclear fuel exhausts.</p>' },
+      { id: 'art-2', title: 'Pāṇini’s Aṣṭādhyāyī: Generative Grammar', categoryName: 'Sanskrit & Indian Systems', summary: 'Ancient algorithmic generative language system.', content: '<h3 class="font-devanagari">पाणिनि अष्टाध्यायी</h3><p>Rule engine consisting of 3,996 generative sūtras.</p>' }
     ];
 
     const DOCUMENTARIES = [
-      { id: 'doc-1', title: 'The Edge of Spacetime', synopsis: 'Visual investigation into event horizons.' }
+      { id: 'doc-1', title: 'The Edge of Spacetime', synopsis: 'Visual investigation into event horizons and quantum physics.' }
     ];
 
     let currentLang = localStorage.getItem('sanctum_lang') || 'en';
@@ -259,8 +278,14 @@
       renderExploreNodes();
       renderDocumentaries();
       renderAiMessages();
+      renderSavedBookmarks();
       applyLanguageUI();
     });
+
+    function enterSanctumPortal() {
+      const overlay = document.getElementById('login-gate-overlay');
+      if (overlay) overlay.style.display = 'none';
+    }
 
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'ne' : 'en';
@@ -269,13 +294,16 @@
     }
 
     function applyLanguageUI() {
-      document.getElementById('lang-btn-text').innerText = currentLang === 'en' ? 'नेपाली' : 'English';
+      const btnText = document.getElementById('lang-btn-text');
+      if (btnText) btnText.innerText = currentLang === 'en' ? 'नेपाली' : 'English';
+
       if (currentLang === 'ne') {
         document.getElementById('lbl-nav-home').innerText = 'गृहपृष्ठ';
         document.getElementById('lbl-nav-explore').innerText = 'अन्वेषण';
         document.getElementById('lbl-nav-vault').innerText = 'ज्ञान भण्डार';
         document.getElementById('lbl-nav-ai').innerText = 'सङ्गम एआई';
         document.getElementById('lbl-nav-docs').innerText = 'वृत्तचित्र';
+        document.getElementById('lbl-nav-sanctum').innerText = 'मेरो सङ्गम';
         document.getElementById('hero-title').innerHTML = `ज्ञानको सीमाभन्दा बाहिर।<br><span class="bg-gradient-to-r from-[#64D8FF] via-[#B99AFF] to-[#E7C986] bg-clip-text text-transparent">असीम रहस्यको खोज गरौँ।</span>`;
       } else {
         document.getElementById('lbl-nav-home').innerText = 'Home';
@@ -283,60 +311,18 @@
         document.getElementById('lbl-nav-vault').innerText = 'Vault';
         document.getElementById('lbl-nav-ai').innerText = 'Sanctum AI';
         document.getElementById('lbl-nav-docs').innerText = 'Documentaries';
+        document.getElementById('lbl-nav-sanctum').innerText = 'My Sanctum';
         document.getElementById('hero-title').innerHTML = `Beyond What You Know.<br><span class="bg-gradient-to-r from-[#64D8FF] via-[#B99AFF] to-[#E7C986] bg-clip-text text-transparent">Discover What You Don't.</span>`;
       }
       renderCategories();
     }
 
     function switchTab(tabId) {
-      ['home', 'explore', 'vault', 'ai', 'docs'].forEach(id => {
+      const tabs = ['home', 'explore', 'vault', 'ai', 'docs', 'sanctum'];
+      tabs.forEach(id => {
         const el = document.getElementById(`tab-${id}`);
+        const btn = document.getElementById(`nav-${id}`);
         if (el) el.classList.add('hidden');
-      });
-      document.getElementById('article-reader').classList.add('hidden');
-      const target = document.getElementById(`tab-${tabId}`);
-      if (target) target.classList.remove('hidden');
-    }
-
-    function renderCategories() {
-      const container = document.getElementById('categories-grid');
-      if (!container) return;
-      container.innerHTML = CATEGORIES.map(cat => `
-        <div onclick="switchTab('vault')" class="bg-[#0D1320] border border-[#263246] hover:border-[#64D8FF]/50 p-6 rounded-2xl cursor-pointer">
-          <div class="text-3xl mb-3">${cat.icon}</div>
-          <h3 class="font-bold text-base text-[#F4F7FC]">${currentLang === 'ne' ? cat.nepaliName : cat.name}</h3>
-          <p class="text-xs text-[#A7B3C8] mt-1">${currentLang === 'ne' ? cat.nepaliTagline : cat.tagline}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderVaultArticles() {
-      const container = document.getElementById('vault-articles-grid');
-      if (!container) return;
-      container.innerHTML = ARTICLES.map(art => `
-        <div onclick="openArticleReader('${art.id}')" class="bg-[#0D1320] border border-[#263246] p-5 rounded-2xl cursor-pointer">
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#111827] text-[#64D8FF] border border-[#263246]">${art.categoryName}</span>
-          <h3 class="font-bold text-sm text-[#F4F7FC] mt-2">${art.title}</h3>
-          <p class="text-xs text-[#A7B3C8] mt-1">${art.summary}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderExploreNodes() {
-      const container = document.getElementById('explore-map-nodes');
-      if (!container) return;
-      container.innerHTML = CATEGORIES.map(cat => `
-        <div onclick="switchTab('vault')" class="bg-[#111827] border border-[#263246] p-4 rounded-xl cursor-pointer">
-          <div class="text-2xl mb-1">${cat.icon}</div>
-          <div class="text-xs font-bold text-[#F4F7FC]">${currentLang === 'ne' ? cat.nepaliName : cat.name}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderDocumentaries() {
-      const container = document.getElementById('documentaries-grid');
-      if (!container) return;
-      container.innerHTML = DOCUMENTARIES.map(doc => `
-        <div class="bg-[#0D1320] border border-[#263246] rounded-2xl p-4">
-          <h3 class="font-bold text-sm text-[#F4F7FC]">${doc.title}</h3>
-          <p class="text-xs text-[#A7B3C
+        if (btn) {
+          btn.classList.remove('bg-[#111827]', 'border-[#263246]', 'text-[#64D8FF]');
+          btn.clas
